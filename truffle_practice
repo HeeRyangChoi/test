@@ -1,0 +1,6 @@
+mkdir truffle_practice
+cd truffle_practice
+truffle unbox metacoin
+
+ganache-cli --port (yourport) --i (yournetworkid)
+truffle migrate
