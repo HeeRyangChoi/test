@@ -7,5 +7,4 @@ contract HelloWorld{
     function GetHelloWorld()public view returns (string){ 
         return stateVariable;
     }
-    
 }
