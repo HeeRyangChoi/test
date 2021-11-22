@@ -1,0 +1,5 @@
+mkdir smartcontract
+cd smartcontract
+truffle init
+npm init -y
+npm install -E openzeppelin-solidity
