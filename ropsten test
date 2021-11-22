@@ -1,0 +1,10 @@
+truffle-config.js 에서 
+
+const infuraKey = "yourkey" ( line 20 )
+ropsten 주석 해제( line 61~ )
+
+npm install @truffle/hdwallet-provider
+
+mnemonic key 복사 후
+
+truffle migrate --network ropsten
