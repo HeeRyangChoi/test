@@ -1,0 +1,40 @@
+npm install --save-dev @openzeppelin/hardhat-upgrades
+npm install --save-dev @nomiclabs/hardhat-ethers ethers
+
+register the plugin in hardhat.config.js as
+
+require('@openzeppelin/hardhat-upgrades');
+
+can be used as below
+
+
+// scripts/create-box.js
+const { ethers, upgrades } = require("hardhat");
+
+async function main() {
+  const Box = await ethers.getContractFactory("Box");
+  const box = await upgrades.deployProxy(Box, [42]);
+  await box.deployed();
+  console.log("Box deployed to:", box.address);
+}
+
+main();
+
+
+for test,
+
+
+const { expect } = require("chai");
+
+describe("Box", function() {
+  it('works', async () => {
+    const Box = await ethers.getContractFactory("Box");
+    const BoxV2 = await ethers.getContractFactory("BoxV2");
+
+    const instance = await upgrades.deployProxy(Box, [42]);
+    const upgraded = await upgrades.upgradeProxy(instance.address, BoxV2);
+
+    const value = await upgraded.value();
+    expect(value.toString()).to.equal('42');
+  });
+});
